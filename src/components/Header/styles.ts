@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   background-image: -webkit-linear-gradient(#0b1b2b, 85%, #14589c80);
   display: flex;
   justify-content: space-between;
-  height: 30vh;
+  height: 35vh;
   align-items: flex-start;
 
   img {
@@ -16,6 +16,7 @@ export const HeaderContainer = styled.header`
 
   img:first-child {
     align-self: center;
+    margin-top: 1rem;
   }
 
   img:nth-child(2) {
@@ -31,6 +32,6 @@ export const HeaderContainer = styled.header`
     -webkit-transform: scale(-1, -1);
     transform: scale(-1, -1);
 
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 `
