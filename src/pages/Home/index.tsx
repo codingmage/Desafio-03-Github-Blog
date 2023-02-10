@@ -2,13 +2,18 @@ import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import {
   AuthorContainer,
+  DateContainer,
   HomeContainer,
+  IssueCatalog,
   IssueContainer,
   SearchContainer,
   SearchForm,
   TextContainer,
 } from './styles'
-import { FaGithub, FaUserFriends } from 'react-icons/fa'
+import { FaGithub, FaUserFriends, FaExternalLinkAlt } from 'react-icons/fa'
+import ClampLines from 'react-clamp-lines'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 export function Home() {
   const [authorData, setAuthorData] = useState<object>({})
@@ -44,7 +49,15 @@ export function Home() {
       <AuthorContainer>
         <img src={authorData.avatar_url} alt="Foto do autor" />
         <TextContainer>
-          <h3>{authorData.name}</h3>
+          <div>
+            <h3>{authorData.name}</h3>
+            <span>
+              <a href={authorData.html_url}>
+                GITHUB
+                <FaExternalLinkAlt />
+              </a>
+            </span>
+          </div>
           <p>{authorData.bio}</p>
           <footer>
             <span>
@@ -68,16 +81,29 @@ export function Home() {
           <input type="text" placeholder="Buscar conteúdo" />
         </SearchForm>
       </SearchContainer>
-      <div>
+      <IssueCatalog>
         {issuesList.map((issue) => {
           return (
             <IssueContainer key={issue.number}>
-              <h3>{issue.title}</h3>
-              <p>{issue.body}</p>
+              <div>
+                <h3>{issue.title}</h3>
+                <DateContainer>
+                  {formatDistanceToNow(new Date(issue.updated_at), {
+                    addSuffix: true,
+                    locale: ptBR,
+                  })}
+                </DateContainer>
+              </div>
+              <ClampLines
+                text={issue.body}
+                id="default"
+                lines={2}
+                buttons={false}
+              />
             </IssueContainer>
           )
         })}
-      </div>
+      </IssueCatalog>
     </HomeContainer>
   )
 }
