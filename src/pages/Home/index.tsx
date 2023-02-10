@@ -6,14 +6,13 @@ import {
   HomeContainer,
   IssueCatalog,
   IssueContainer,
-  SearchContainer,
-  SearchForm,
   TextContainer,
 } from './styles'
 import { FaGithub, FaUserFriends, FaExternalLinkAlt } from 'react-icons/fa'
 import ClampLines from 'react-clamp-lines'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { SearchIssuesForm } from './components/SearchIssuesForm'
 
 export function Home() {
   const [authorData, setAuthorData] = useState<object>({})
@@ -72,15 +71,7 @@ export function Home() {
           </footer>
         </TextContainer>
       </AuthorContainer>
-      <SearchContainer>
-        <div>
-          <h3>Publicações</h3>
-          <span>6 publicações</span>
-        </div>
-        <SearchForm>
-          <input type="text" placeholder="Buscar conteúdo" />
-        </SearchForm>
-      </SearchContainer>
+      <SearchIssuesForm />
       <IssueCatalog>
         {issuesList.map((issue) => {
           return (
