@@ -1,30 +1,18 @@
 import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import {
-  AuthorContainer,
   DateContainer,
   HomeContainer,
   IssueCatalog,
   IssueContainer,
-  TextContainer,
 } from './styles'
-import { FaGithub, FaUserFriends, FaExternalLinkAlt } from 'react-icons/fa'
 import ClampLines from 'react-clamp-lines'
 import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { SearchIssuesForm } from './components/SearchIssuesForm'
+import { AuthorInfo } from './components/AuthorInfo'
 
 export function Home() {
-  const [authorData, setAuthorData] = useState<object>({})
-
-  useEffect(() => {
-    fetch('https://api.github.com/users/codingmage')
-      .then((response) => response.json())
-      .then((data) => {
-        setAuthorData(data)
-      })
-  }, [])
-
   const [issuesList, setIssuesList] = useState<object[]>([])
 
   useEffect(() => {
@@ -45,32 +33,7 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <AuthorContainer>
-        <img src={authorData.avatar_url} alt="Foto do autor" />
-        <TextContainer>
-          <div>
-            <h3>{authorData.name}</h3>
-            <span>
-              <a href={authorData.html_url}>
-                GITHUB
-                <FaExternalLinkAlt />
-              </a>
-            </span>
-          </div>
-          <p>{authorData.bio}</p>
-          <footer>
-            <span>
-              <FaGithub />
-              {authorData.login}
-            </span>
-
-            <span>
-              <FaUserFriends />
-              {authorData.followers} seguidores
-            </span>
-          </footer>
-        </TextContainer>
-      </AuthorContainer>
+      <AuthorInfo />
       <SearchIssuesForm />
       <IssueCatalog>
         {issuesList.map((issue) => {
