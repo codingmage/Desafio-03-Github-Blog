@@ -25,11 +25,6 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
   async function fetchIssues(query: string = '') {
     const response = await api.get(
       `search/issues?q=${query}repo:codingmage/Desafio-03-Github-Blog`,
-      /*       {
-        params: {
-          q: `${query}repo:codingmage/Desafio-03-Github-Blog`,
-        },
-      }, */
     )
     setIssuesList(response.data.items)
   }
@@ -37,9 +32,6 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
     fetchIssues()
   }, [])
 
-  /* https://api.github.com/repos/codingmage/Desafio-03-Github-Blog/issues/1 */
-
-  console.log(issuesList)
   return (
     <IssuesContext.Provider value={{ issuesList, fetchIssues }}>
       {children}
