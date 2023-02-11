@@ -12,6 +12,10 @@ export const IssueCatalog = styled.div`
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export const IssueContainer = styled.article`
@@ -36,6 +40,7 @@ export const IssueContainer = styled.article`
     flex-wrap: wrap;
 
     width: 16rem;
+    color: ${(props) => props.theme['base-title']};
   }
 
   border: 2px solid transparent;
@@ -43,6 +48,8 @@ export const IssueContainer = styled.article`
   &:hover {
     border: 2px solid ${(props) => props.theme['base-label']};
   }
+
+  color: ${(props) => props.theme['base-text']};
 `
 
 export const DateContainer = styled.span`

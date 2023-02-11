@@ -37,6 +37,8 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
     fetchIssues()
   }, [])
 
+  /* https://api.github.com/repos/codingmage/Desafio-03-Github-Blog/issues/1 */
+
   console.log(issuesList)
   return (
     <IssuesContext.Provider value={{ issuesList, fetchIssues }}>
