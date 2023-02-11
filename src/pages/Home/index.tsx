@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useCallback, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import {
   DateContainer,
   HomeContainer,
@@ -11,25 +11,14 @@ import { formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { SearchIssuesForm } from './components/SearchIssuesForm'
 import { AuthorInfo } from './components/AuthorInfo'
+import { IssuesContext } from '../../contexts/IssuesContext'
 
 export function Home() {
-  const [issuesList, setIssuesList] = useState<object[]>([])
-
-  useEffect(() => {
-    fetch(
-      'https://api.github.com/search/issues?q=repo:codingmage/Desafio-03-Github-Blog',
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setIssuesList(data.items)
-      })
-  }, [])
-
-  console.log(issuesList)
-
   /*   const fetchAuthor = axios.get('https://api.github.com/users/codingmage')
 
   console.log(fetchAuthor) */
+
+  const { issuesList } = useContext(IssuesContext)
 
   return (
     <HomeContainer>
