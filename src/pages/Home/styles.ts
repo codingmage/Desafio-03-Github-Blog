@@ -16,6 +16,7 @@ export const IssueCatalog = styled.div`
   a {
     text-decoration: none;
   }
+  margin-bottom: 2rem;
 `
 
 export const IssueContainer = styled.article`

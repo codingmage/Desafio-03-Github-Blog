@@ -23,6 +23,12 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
   const [issuesList, setIssuesList] = useState<SingleIssue[]>([])
 
   async function fetchIssues(query: string = '') {
+    /* alternate way: 
+        const response = await api.get(`search/issues`, {
+      params: {
+        q: `${query}repo:codingmage/Desafio-03-Github-Blog`,
+      },
+    }) */
     const response = await api.get(
       `search/issues?q=${query}repo:codingmage/Desafio-03-Github-Blog`,
     )
